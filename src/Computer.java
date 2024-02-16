@@ -1,6 +1,7 @@
 import org.bson.types.ObjectId;
 
 public class Computer {
+    //Attribute
     private ObjectId id;
     private String hersteller;
     private String modell;
@@ -12,6 +13,7 @@ public class Computer {
     private String schnittstellen;
 
 
+    //getter und setter
     public ObjectId getId() {
         return id;
     }

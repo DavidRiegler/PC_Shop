@@ -1,8 +1,8 @@
 import org.bson.types.ObjectId;
-
 import java.util.Date;
 
 public class Kunde {
+    //Attribute
     private ObjectId id;
     private String geschlecht;
     private String nachname;
@@ -14,6 +14,7 @@ public class Kunde {
     private java.util.Date geburtsdatum;
 
 
+    //getter und setter
     public ObjectId getId() {
         return id;
     }

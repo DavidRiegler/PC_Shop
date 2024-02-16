@@ -10,11 +10,11 @@ import org.bson.Document;
 import org.bson.types.ObjectId;
 
 public class KundeInteractions {
-
     private static Scanner scanner;
     private static MongoCollection<Document> collection;
     private static ArrayList<Kunde> customers;
 
+    //Konstruktor
     public KundeInteractions() {
         scanner = new Scanner(System.in);
         MongoClient mongoClient = new MongoClient(new MongoClientURI("mongodb://localhost:27017"));
@@ -25,12 +25,15 @@ public class KundeInteractions {
         loadCustomersFromDatabase();
     }
 
+    // Methode zum Laden von Kunden aus der Datenbank
     private void loadCustomersFromDatabase() {
         MongoCursor<Document> cursor = collection.find().iterator();
         try {
             while (cursor.hasNext()) {
                 Document doc = cursor.next();
                 Kunde customer = new Kunde();
+                // Kundendaten aus dem Dokument extrahieren und setzen
+                // (Geschlecht, Name, Adresse usw.)
                 customer.setId(doc.getObjectId("_id"));
                 customer.setGeschlecht(doc.getString("geschlecht"));
                 customer.setNachname(doc.getString("nachname"));
@@ -47,6 +50,7 @@ public class KundeInteractions {
         }
     }
 
+    // Methode zur Interaktion mit Kunden
     public static void startInteraction() {
         while (true) {
             System.out.println("1. Neuen Kunden hinzufügen");
@@ -72,6 +76,7 @@ public class KundeInteractions {
         }
     }
 
+    //Methode zur Erstellung eines neuen Kunden
     public static void addNewCustomer() {
         Kunde customer = new Kunde();
 
@@ -110,6 +115,7 @@ public class KundeInteractions {
         System.out.println(customer);
     }
 
+    //Methode zur Bearbeitung eines Kunden
     public static void editCustomer() {
         displayCustomers();
 
@@ -159,6 +165,7 @@ public class KundeInteractions {
         System.out.println(customer);
     }
 
+    //Methode zur Anzeige aller Kunden
     public static void displayCustomers() {
         System.out.println("Alle Kunden:");
 
@@ -174,6 +181,7 @@ public class KundeInteractions {
         }
     }
 
+    //Methode zum Löschen eines Kunden
     public static void deleteCustomer() {
         displayCustomers();
 

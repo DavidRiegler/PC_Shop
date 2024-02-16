@@ -7,6 +7,7 @@ public class Main {
         KundeInteractions customerManager = new KundeInteractions();
         BestellungInteractions orderManager = new BestellungInteractions();
 
+        // Verbindung zur Datenbank herstellen
         DbAccess.connect("PC_Shop");
 
         while (true) {
@@ -20,14 +21,20 @@ public class Main {
             scanner.nextLine();
 
             switch (choice) {
+                // Fall, um die Interaktion mit Computern zu starten
                 case 1 -> ComputerInteractions.startInteraction();
+                // Fall, um die Interaktion mit Kunden zu starten
                 case 2 -> KundeInteractions.startInteraction();
+                // Fall, um die Interaktion mit Bestellungen zu starten
                 case 3 -> BestellungInteractions.startInteraction();
+                // Fall, um das Programm zu beenden
                 case 4 -> {
                     System.out.println("Auf Wiedersehen!");
+                    // Datenbankverbindung schließen
                     DbAccess.close();
                     System.exit(0);
                 }
+                // Standardfall für ungültige Eingaben
                 default -> System.out.println("Ungültige Eingabe. Bitte wählen Sie erneut.");
             }
         }

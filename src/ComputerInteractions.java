@@ -8,11 +8,11 @@ import com.mongodb.client.MongoDatabase;
 import org.bson.Document;
 
 public class ComputerInteractions {
-
     private static Scanner scanner;
     private static MongoCollection<Document> collection;
     private static ArrayList<Computer> computers;
 
+    //Konstruktor
     public ComputerInteractions() {
         scanner = new Scanner(System.in);
         MongoClient mongoClient = new MongoClient(new MongoClientURI("mongodb://localhost:27017"));
@@ -23,12 +23,15 @@ public class ComputerInteractions {
         loadComputersFromDatabase();
     }
 
+    // Methode zum Laden von Computern aus der Datenbank
     private void loadComputersFromDatabase() {
         MongoCursor<Document> cursor = collection.find().iterator();
         try {
             while (cursor.hasNext()) {
                 Document doc = cursor.next();
                 Computer computer = new Computer();
+                // Computerdaten aus dem Dokument extrahieren und setzen
+                // (Hersteller, Modell, Arbeitsspeicher usw.)
                 computer.setId(doc.getObjectId("_id"));
                 computer.setHersteller(doc.getString("hersteller"));
                 computer.setModell(doc.getString("modell"));
@@ -45,6 +48,7 @@ public class ComputerInteractions {
         }
     }
 
+    // Methode zur Interaktion mit Bestellungen
     public static void startInteraction() {
         while (true) {
             System.out.println("1. Neuen Computer hinzufügen");
@@ -70,6 +74,7 @@ public class ComputerInteractions {
         }
     }
 
+    //Methode zur Erstellung eines neuen Computers
     public static void addNewComputer() {
         Computer computer = new Computer();
 
@@ -109,6 +114,7 @@ public class ComputerInteractions {
         System.out.println(computer);
     }
 
+    //Methode zur Bearbeitung eines Computers
     public static void editComputer() {
         displayComputers();
 
@@ -161,6 +167,7 @@ public class ComputerInteractions {
         System.out.println(computer);
     }
 
+    //Methode zur Anzeige aller Computer
     public static void displayComputers() {
         System.out.println("Alle Computer:");
 
@@ -176,6 +183,7 @@ public class ComputerInteractions {
         }
     }
 
+    //Methode zum Löschen eines Computers
     public static void deleteComputer() {
         displayComputers();
 

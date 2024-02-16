@@ -1,9 +1,11 @@
 public class Bestellung {
+    //Attribute
     private Computer computer;
     private double preis;
     private int stueckzahl;
 
 
+    //getter und setter
     public Computer getComputer() {
         return computer;
     }

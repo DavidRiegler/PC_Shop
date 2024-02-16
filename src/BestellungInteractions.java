@@ -9,11 +9,11 @@ import com.mongodb.client.MongoDatabase;
 import org.bson.Document;
 
 public class BestellungInteractions {
-
     private static Scanner scanner;
     private static MongoCollection<Document> collection;
     private static ArrayList<Bestellung> bestellungen;
 
+    //Konstruktor
     public BestellungInteractions() {
         scanner = new Scanner(System.in);
         MongoClient mongoClient = new MongoClient(new MongoClientURI("mongodb://localhost:27017"));
@@ -24,6 +24,7 @@ public class BestellungInteractions {
         loadBestellungenFromDatabase();
     }
 
+    // Methode zum Laden von Bestellungen aus der Datenbank
     private void loadBestellungenFromDatabase() {
         MongoCursor<Document> cursor = collection.find().iterator();
         try {
@@ -32,6 +33,8 @@ public class BestellungInteractions {
                 Bestellung bestellung = new Bestellung();
                 Document computerDoc = doc.get("computer", Document.class);
                 Computer computer = new Computer();
+                // Computerdaten aus dem Dokument extrahieren und setzen
+                // (Hersteller, Modell, Arbeitsspeicher usw.)
                 computer.setHersteller(computerDoc.getString("hersteller"));
                 computer.setModell(computerDoc.getString("modell"));
                 computer.setArbeitsspeicher(computerDoc.getInteger("arbeitsspeicher"));
@@ -50,6 +53,7 @@ public class BestellungInteractions {
         }
     }
 
+    // Methode zur Interaktion mit Bestellungen
     public static void startInteraction() {
         while (true) {
             System.out.println("1. Neue Bestellung erstellen");
@@ -75,6 +79,7 @@ public class BestellungInteractions {
         }
     }
 
+    // Methode zur Erstellung einer neuen Bestellung
     public static void createNewBestellung() {
         Computer computer = new Computer();
         System.out.println("Hersteller:");
@@ -126,6 +131,7 @@ public class BestellungInteractions {
         System.out.println(bestellung);
     }
 
+    // Methode zur Bearbeitung einer Bestellung
     public static void editBestellung() {
         displayBestellungen();
 
@@ -195,6 +201,7 @@ public class BestellungInteractions {
         System.out.println(bestellung);
     }
 
+    // Methode zur Anzeige aller Bestellungen
     public static void displayBestellungen() {
         System.out.println("Alle Bestellungen:");
 
@@ -212,6 +219,7 @@ public class BestellungInteractions {
         }
     }
 
+    // Methode zum Löschen einer Bestellung
     public static void deleteBestellung() {
         displayBestellungen();
 
