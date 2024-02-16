@@ -1,32 +1,45 @@
+import org.bson.types.ObjectId;
+import java.util.Date;
+
 public class Bestellung {
-    //Attribute
-    private Computer computer;
-    private double preis;
-    private int stueckzahl;
+    // Attribute
+    private ObjectId bestellnummer;
+    private Date bestelldatum;
+    private Kunde kunde;
+    private Bestellungspositionen bestellungspositionen;
 
 
-    //getter und setter
-    public Computer getComputer() {
-        return computer;
+
+    // Getter und Setter
+    public ObjectId getBestellnummer() {
+        return bestellnummer;
     }
 
-    public void setComputer(Computer computer) {
-        this.computer = computer;
+    public void setBestellnummer(ObjectId bestellnummer) {
+        this.bestellnummer = bestellnummer;
     }
 
-    public double getPreis() {
-        return preis;
+    public Date getBestelldatum() {
+        return bestelldatum;
     }
 
-    public void setPreis(double preis) {
-        this.preis = preis;
+    public void setBestelldatum(Date bestelldatum) {
+        this.bestelldatum = bestelldatum;
     }
 
-    public int getStueckzahl() {
-        return stueckzahl;
+    public Kunde getKunde() {
+        return kunde;
     }
 
-    public void setStueckzahl(int stueckzahl) {
-        this.stueckzahl = stueckzahl;
+    public void setKunde(Kunde kunde) {
+        this.kunde = kunde;
+    }
+
+    public Bestellungspositionen getBestellungspositionen() {
+        return bestellungspositionen;
+    }
+
+    public void setBestellungspositionen(Bestellungspositionen bestellungspositionen) {
+        this.bestellungspositionen = bestellungspositionen;
     }
 }
